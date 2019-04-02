@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.7.4",
+    "mobx-react": "^5.4.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-input-mask": "^2.0.4",
     "react-scripts": "2.1.8"
   },
   "scripts": {
@@ -22,5 +24,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1",
+    "webpack": "^4.29.6"
+  }
 }
