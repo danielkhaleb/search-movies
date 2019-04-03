@@ -1,0 +1,15 @@
+$label-grey: #5D5D5D;
+$input-border-grey: #AAAAAA;
+$arial-font: "Arial", sans-serif;
+
+.factor-form-search-input-container {
+    label {
+        color: $label-grey;
+        text-transform: uppercase;
+        min-height: 24px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: $arial-font;
+        margin-bottom: 0 !important;
+    }
+}

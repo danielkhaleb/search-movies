@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import InputMask from 'react-input-mask';
 
 class SearchInput extends Component {
@@ -29,4 +30,4 @@ class SearchInput extends Component {
         );
     }
 }
-export default observer(SearchInput);
+export default SearchInput;
