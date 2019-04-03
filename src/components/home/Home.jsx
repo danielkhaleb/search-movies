@@ -84,8 +84,8 @@ class Home extends Component {
                 <div className="columns">
                     <div className="column is-11">
                         <SearchInput
-                            label="Buscar"
-                            placeholder="Título do filme"
+                            label="Search"
+                            placeholder="Title from movie"
                             onChange={this.queryChange.bind(this)}
                             onKeyPress={this.getForKey.bind(this)}
                         />
@@ -94,7 +94,7 @@ class Home extends Component {
                         <div className="space"></div>
                         <a onClick={this.performSearch.bind(this)}
                             className={`btn-search button is-primary ${this.state.isLoading ?
-                                "is-loading" : ""}`}>Filtrar</a>
+                                "is-loading" : ""}`}>Search</a>
                     </div>
                 </div>
                 {
