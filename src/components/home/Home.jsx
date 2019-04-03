@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import SearchInput from '../inputs/SearchInput';
-import { getMovies } from '../../services/api';
+import { getMutipleMovies, getSpecificMovie } from '../../services/api';
 import Pagination from "react-js-pagination";
 import List from '../list/List';
+import Movie from '../movie/Movie';
 
 class Home extends Component {
 
@@ -11,6 +12,7 @@ class Home extends Component {
 
         this.state = {
             movies: [],
+            movie: [],
             query: '',
             isLoading: false,
             doNotSearchYet: true,
@@ -18,30 +20,34 @@ class Home extends Component {
             itemsCountPerPage: 10,
             totalItemsCount: 0,
             pageRangeDisplayed: 5,
-            oldQuery: ''
+            oldQuery: '',
+            isSearchSpecific: false
         }
     }
 
-    fetchData() {
+    fetchDataList() {
         let pageNumber = this.state.activePage;
-        if(this.state.oldQuery !== this.state.query)
+        if (this.state.oldQuery !== this.state.query)
             pageNumber = 1;
 
         this.setState({
             isLoading: true,
             doNotSearchYet: false,
             oldQuery: this.state.query,
-            activePage: pageNumber
+            activePage: pageNumber,
+            isSearchSpecific: false
         });
 
-        getMovies(this.state.query, pageNumber).then((result) => {
+        const name = this.state.query.replace(' ', '+')
+
+        getMutipleMovies(name, pageNumber).then((result) => {
             const moviesList = result.data.Search;
             this.setState({
                 movies: moviesList,
                 isLoading: false,
                 totalItemsCount: result.data.totalResults
             });
-        });
+        }).catch(console.log);
 
     }
 
@@ -51,17 +57,34 @@ class Home extends Component {
         });
     }
 
-    getForKey(event) {
-        if (event.key === 'Enter')
-            return this.performSearch();
+    clickSearchPerList(event) {
+        return this.fetchDataList();
     }
 
-    clickSearch(event) {
-        return this.performSearch();
+    fetchDataSpecifc() {
+        const pageNumber = 1
+
+        this.setState({
+            isLoading: true,
+            doNotSearchYet: false,
+            oldQuery: this.state.query,
+            activePage: pageNumber,
+            isSearchSpecific: true,
+        });
+
+        const name = this.state.query.replace(' ', '+')
+
+        getSpecificMovie(name).then((result) => {
+            this.setState({
+                movie: result.data,
+                isLoading: false,
+            });
+        }).catch(console.log);
     }
 
-    performSearch() {
-        this.fetchData();
+    clickSearchSpecific() {
+
+        return this.fetchDataSpecifc();
     }
 
     checkList() {
@@ -69,69 +92,97 @@ class Home extends Component {
     }
 
     pageChange(pageNumber) {
-        if(pageNumber === this.state.activePage)
+        if (pageNumber === this.state.activePage)
             return;
 
-        this.setState({activePage: pageNumber}, () => {
-            this.fetchData();
+        this.setState({ activePage: pageNumber }, () => {
+            this.fetchDataList();
         });
+    }
+
+    checkIsMovieExist(){
+        return this.state.movie !== undefined && this.state.movie.Response === "True";
+    }
+
+    showListMovies() {
+        return (
+            <div>
+                <div className="columns">
+                    <div className="column">
+                        <div className="pagination-container is-fullwidth">
+                            <nav className="pagination" aria-label="pagination">
+                                <Pagination
+                                    activePage={this.state.activePage}
+                                    itemsCountPerPage={this.state.itemsCountPerPage}
+                                    totalItemsCount={this.state.totalItemsCount}
+                                    pageRangeDisplayed={this.state.pageRangeDisplayed}
+                                    onChange={this.pageChange.bind(this)}
+                                    innerClass="pagination-list"
+                                    linkClass="pagination-link"
+                                    activeLinkClass="pagination-link is-current"
+                                />
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div className="columns">
+                    <div className="column">
+                        <List
+                            data={this.state.movies}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    notFoundMovies() {
+        return (
+            <div className="columns">
+                <div className="column">
+                    <span className="title is-2">Not Found Movies</span>
+                </div>
+            </div>
+        );
     }
 
     render() {
 
         return (
-            <div className="column is-10 is-offset-1">
+            <div className="column is-10 is-offset-1 home">
                 <div className="columns">
-                    <div className="column is-11">
+                    <div className="column is-8">
                         <SearchInput
-                            label="Search"
+                            label="Search by movie title"
                             placeholder="Title from movie"
                             onChange={this.queryChange.bind(this)}
-                            onKeyPress={this.getForKey.bind(this)}
                         />
                     </div>
-                    <div className="column column is-1">
+                    <div className="column column is-2">
                         <div className="space"></div>
-                        <button onClick={this.performSearch.bind(this)}
+                        <button onClick={this.clickSearchPerList.bind(this)}
                             className={`btn-search button is-primary ${this.state.isLoading ?
-                                "is-loading" : ""}`}>Search</button>
+                                "is-loading" : ""}`}>Search list</button>
+                    </div>
+                    <div className="column column is-2">
+                        <div className="space"></div>
+                        <button onClick={this.clickSearchSpecific.bind(this)}
+                            className={`btn-search button is-primary ${this.state.isLoading ?
+                                "is-loading" : ""}`}>Search specific</button>
                     </div>
                 </div>
                 {
-                    this.checkList() ?
-                        <div>
-                            <div className="columns">
-                                <div className="column">
-                                    <div className="pagination-container is-fullwidth">
-                                        <nav className="pagination" aria-label="pagination">
-                                            <Pagination
-                                                activePage={this.state.activePage}
-                                                itemsCountPerPage={this.state.itemsCountPerPage}
-                                                totalItemsCount={this.state.totalItemsCount}
-                                                pageRangeDisplayed={this.state.pageRangeDisplayed}
-                                                onChange={this.pageChange.bind(this)}
-                                                innerClass="pagination-list"
-                                                linkClass="pagination-link"
-                                                activeLinkClass="pagination-link is-current"
-                                            />
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="columns">
-                                <div className="column">
-                                    <List
-                                        data={this.state.movies}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        : !this.state.isLoading && !this.state.doNotSearchYet ?
-                            <div className="columns">
-                                <div className="column">
-                                    <span className="title is-2">404 - Not Found Movies</span>
-                                </div>
-                            </div> : null
+ 
+                    !this.state.isSearchSpecific ?
+                        this.checkList() ?
+                            this.showListMovies()
+                            : !this.state.isLoading && !this.state.doNotSearchYet ?
+                                this.notFoundMovies()
+                                : null
+                        : this.checkIsMovieExist() ?
+                         <Movie
+                            data={this.state.movie}
+                        /> : this.notFoundMovies()
                 }
             </div>
         );

@@ -1,12 +1,15 @@
 import React from 'react';
-import Home from '../Home';
+import Movie from '../Movie';
+import movieJson from "../../../../mock/movie.json"
 import renderer from 'react-test-renderer';
 
-describe('Home component', () => {
+describe('Movie component', () => {
 
     it('renders correctly', () => {
         const tree = renderer.create(
-            <Home />
+            <Movie
+                data={movieJson}
+            />
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });
