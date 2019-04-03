@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List component renders correctly 1`] = `
+<div>
+  <div
+    className="columns"
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="card card-movie"
+      >
+        <div
+          className="card-image"
+        >
+          <figure
+            className="image is-4by3"
+          >
+            <img
+              alt="Image not found"
+              src="image-not-found.gif"
+            />
+          </figure>
+        </div>
+        <div
+          className="card-content"
+        >
+          <div
+            className="media-content"
+          >
+            <p
+              className="title is-6"
+            >
+              Title: 
+              Test
+            </p>
+          </div>
+          <div
+            class="content"
+          >
+            <br />
+            <p
+              className="subtitle is-7"
+            >
+              Type: 
+              Movie
+            </p>
+            <p
+              className="subtitle is-7"
+            >
+              Year: 
+              2019
+            </p>
+            <p
+              className="subtitle is-7"
+            >
+              Imdb Id: 
+              123
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="columns"
+  />
+</div>
+`;

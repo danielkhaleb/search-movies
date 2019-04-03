@@ -24,7 +24,7 @@ class Home extends Component {
 
     fetchData() {
         let pageNumber = this.state.activePage;
-        if(this.state.oldQuery != this.state.query)
+        if(this.state.oldQuery !== this.state.query)
             pageNumber = 1;
 
         this.setState({
@@ -65,7 +65,7 @@ class Home extends Component {
     }
 
     checkList() {
-        return this.state.movies != undefined && this.state.movies.length > 0;
+        return this.state.movies !== undefined && this.state.movies.length > 0;
     }
 
     pageChange(pageNumber) {
@@ -92,9 +92,9 @@ class Home extends Component {
                     </div>
                     <div className="column column is-1">
                         <div className="space"></div>
-                        <a onClick={this.performSearch.bind(this)}
+                        <button onClick={this.performSearch.bind(this)}
                             className={`btn-search button is-primary ${this.state.isLoading ?
-                                "is-loading" : ""}`}>Search</a>
+                                "is-loading" : ""}`}>Search</button>
                     </div>
                 </div>
                 {
@@ -126,7 +126,7 @@ class Home extends Component {
                                 </div>
                             </div>
                         </div>
-                        : !this.state.doNotSearchYet ?
+                        : !this.state.isLoading && !this.state.doNotSearchYet ?
                             <div className="columns">
                                 <div className="column">
                                     <span className="title is-2">404 - Not Found Movies</span>

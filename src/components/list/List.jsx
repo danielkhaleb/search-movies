@@ -8,11 +8,14 @@ class List extends Component {
                 <div className="card card-movie">
                     <div className="card-image">
                         <figure className="image is-4by3">
-                        {
-                            source.Poster === undefined || source.Poster === "N/A" ?
-                            <img src={require('../../utils/imgs/image-not-found.gif')} alt="Image not found" />
-                            : <img src={source.Poster} alt="Image of movie" />
-                        }
+                            {
+                                source.Poster === undefined || source.Poster === "N/A" ?
+                                    // eslint-disable-next-line
+                                    <img src={require('../../utils/imgs/image-not-found.gif')} alt="Image not found" />
+                                    :
+                                    // eslint-disable-next-line 
+                                    <img src={source.Poster} alt="Image of movie" />
+                            }
                         </figure>
                     </div>
                     <div className="card-content">
@@ -21,7 +24,7 @@ class List extends Component {
 
                         </div>
                         <div class="content">
-                        <br/>
+                            <br />
                             <p className="subtitle is-7">Type: {source.Type}</p>
                             <p className="subtitle is-7">Year: {source.Year}</p>
                             <p className="subtitle is-7">Imdb Id: {source.imdbID}</p>
@@ -38,6 +41,7 @@ class List extends Component {
             if (index < 5) {
                 return (this.listDetails(source));
             }
+            return null;
 
         });
 
@@ -45,6 +49,7 @@ class List extends Component {
             if (index > 4) {
                 return (this.listDetails(source));
             }
+            return null;
 
         });
 

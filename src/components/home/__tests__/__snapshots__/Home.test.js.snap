@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component renders correctly 1`] = `
+<div
+  className="column is-10 is-offset-1"
+>
+  <div
+    className="columns"
+  >
+    <div
+      className="column is-11"
+    >
+      <div
+        className="field factor-form-search-input-container"
+      >
+        <label
+          className="label"
+        >
+          Search
+        </label>
+        <p
+          className="control has-icons-right"
+        >
+          <input
+            className="input is-full-width"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyPress={[Function]}
+            placeholder="Title from movie"
+            type="text"
+          />
+          <span
+            className="icon is-small is-right"
+          >
+            <i
+              className="fa fa-search"
+            />
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      className="column column is-1"
+    >
+      <div
+        className="space"
+      />
+      <button
+        className="btn-search button is-primary "
+        onClick={[Function]}
+      >
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+`;

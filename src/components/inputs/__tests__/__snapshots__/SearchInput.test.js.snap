@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search input component renders correctly 1`] = `
+<div
+  className="field factor-form-search-input-container"
+>
+  <label
+    className="label"
+  >
+    Search
+  </label>
+  <p
+    className="control has-icons-right"
+  >
+    <input
+      className="input is-full-width"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      placeholder="Title from movie"
+      type="text"
+    />
+    <span
+      className="icon is-small is-right"
+    >
+      <i
+        className="fa fa-search"
+      />
+    </span>
+  </p>
+</div>
+`;
