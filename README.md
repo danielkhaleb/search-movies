@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-First install dependences with command ### `npm install`
+First install dependences with command `npm install`
 In the project directory, you can run:
 
 ### `npm start`
@@ -28,4 +28,4 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `THE APPLICATION CAN SEARCH PER TWO METHODS OF SEARCH PER LIST AND SPECIFIC MOVIE (THE SEARCH SPECIFIC SOMETIMES NOT FOUND MOVIE BECAUSE API IS UNSTABLE WITH THAR PARAMETERS)´
+### `THE APPLICATION CAN SEARCH PER TWO METHODS OF SEARCH PER LIST AND SPECIFIC MOVIE (THE SEARCH SPECIFIC SOMETIMES NOT FOUND MOVIE BECAUSE API IS UNSTABLE WITH THAR PARAMETERS)`
