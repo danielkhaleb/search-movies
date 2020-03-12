@@ -12,7 +12,7 @@ const api = axios.create({
     }
 });
 
-export function getMutipleMovies(title, page) {
+export function getMultipleMovies(title, page) {
     return api.get(`?apikey=69cadc24&s=${title}&page=${page}`);
 }
 

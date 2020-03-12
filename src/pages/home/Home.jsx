@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import SearchInput from '../inputs/SearchInput';
-import { getMutipleMovies, getSpecificMovie } from '../../services/api';
+import SearchInput from '../../components/inputs/SearchInput';
+import { getMultipleMovies, getSpecificMovie } from '../../services/api';
 import Pagination from "react-js-pagination";
-import List from '../list/List';
-import Movie from '../movie/Movie';
+import List from '../../components/list/List';
+import Movie from '../../components/movie/Movie';
+import {withRouter} from 'react-router-dom'
 
 class Home extends Component {
 
@@ -25,6 +26,10 @@ class Home extends Component {
         }
     }
 
+    goToTestRoute() {
+        this.props.history.push('/testroute');
+    }
+
     fetchDataList() {
         let pageNumber = this.state.activePage;
         if (this.state.oldQuery !== this.state.query)
@@ -40,7 +45,7 @@ class Home extends Component {
 
         const name = this.state.query.replace(' ', '+')
 
-        getMutipleMovies(name, pageNumber).then((result) => {
+        getMultipleMovies(name, pageNumber).then((result) => {
             const moviesList = result.data.Search;
             this.setState({
                 movies: moviesList,
@@ -151,7 +156,7 @@ class Home extends Component {
         return (
             <div className="column is-10 is-offset-1 home">
                 <div className="columns">
-                    <div className="column is-8">
+                    <div className="column is-6">
                         <SearchInput
                             label="Search by movie title"
                             placeholder="Title from movie"
@@ -169,6 +174,11 @@ class Home extends Component {
                         <button onClick={this.clickSearchSpecific.bind(this)}
                             className={`btn-search button is-primary ${this.state.isLoading ?
                                 "is-loading" : ""}`}>Search specific</button>
+                    </div>
+                    <div className="column column is-2">
+                        <div className="space"></div>
+                        <button onClick={this.goToTestRoute.bind(this)}
+                            className={`btn-search button is-primary`}>test route</button>
                     </div>
                 </div>
                 {
@@ -188,4 +198,4 @@ class Home extends Component {
         );
     }
 }
-export default Home;
+export default withRouter(Home);

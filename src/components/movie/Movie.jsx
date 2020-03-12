@@ -13,7 +13,7 @@ class Movie extends Component {
                                     // eslint-disable-next-line
                                     <img src={require('../../utils/imgs/image-not-found.gif')} alt="Image not found" />
                                     :
-                                    // eslint-disable-next-line 
+                                    // eslint-disable-next-line
                                     <img src={source.Poster} alt="Image of movie" />
                             }
                         </figure>

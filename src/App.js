@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import Home from './components/home/Home'
+import { Route, HashRouter } from 'react-router-dom'
+import Home from './pages/home/Home'
+import TestRoute from './pages/testRoute/TestRoute'
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
-     <Home/>
+      <HashRouter>
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/testroute" component={TestRoute}></Route>
+      </HashRouter>
     );
   }
 }
